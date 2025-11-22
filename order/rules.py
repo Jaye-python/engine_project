@@ -50,3 +50,14 @@ class DivisibleBy5Rule(BaseRule):
 
     def check(self, order):
         return order.total % 5 == 0
+
+
+# TEST NEW RULES
+# class MaxTotal500Rule(BaseRule):
+#     """
+#     Checks if the order total is less than 500
+#     """
+#     name = "max_total_500"
+
+#     def check(self, order):
+#         return order.total < 100
