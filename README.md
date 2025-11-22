@@ -105,6 +105,12 @@ The project includes 3 sample orders:
 - Order 2: $75.50, 1 item
 - Order 3: $200.00, 5 items
 
+## API Documentation
+
+Interactive API documentation is available at:
+- **Swagger UI**: http://localhost:8000/api/docs/
+- **OpenAPI Schema**: http://localhost:8000/api/schema/
+
 ## Demo
 
 Run the demo script to see the rule engine in action:
