@@ -15,6 +15,8 @@ A Django project implementing a pluggable rule engine for order validation.
 - `total`: DecimalField (max_digits=10, decimal_places=2)
 - `items_count`: IntegerField
 
+**Database**: Uses Django's default SQLite database (`db.sqlite3`)
+
 ## Rules
 
 Rules are automatically registered when defined. Each rule inherits from `BaseRule` and implements a `check(order)` method.
