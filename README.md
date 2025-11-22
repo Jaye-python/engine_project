@@ -59,29 +59,41 @@ class CustomRule(BaseRule):
 }
 ```
 
-## Setup
+## Local Setup
 
-1. Install dependencies:
+1. Create project directory and virtual environment:
 ```bash
+cd Desktop/
+mkdir rule_folder
+cd rule_folder
+python3 -m venv revenv
+source revenv/bin/activate
+python -m pip install --upgrade pip
+```
+
+2. Clone project and install dependencies:
+```bash
+git clone git@github.com:Jaye-python/engine_project.git
+cd engine_project
 pip install -r requirements.txt
 ```
 
-2. Run migrations:
+3. Run migrations:
 ```bash
 python manage.py migrate
 ```
 
-3. Seed sample data:
+4. Seed sample data:
 ```bash
 python manage.py seed_orders
 ```
 
-4. Run tests:
+5. Run tests:
 ```bash
 python manage.py test
 ```
 
-5. Start server:
+6. Start server:
 ```bash
 python manage.py runserver
 ```
