@@ -1,3 +1,6 @@
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -7,19 +10,25 @@ from .rules import RuleRegistry
 from .serializers import RuleCheckRequestSerializer, RuleCheckResponseSerializer
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 class CheckRulesView(APIView):
+    @extend_schema(
+        request=RuleCheckRequestSerializer,
+        responses=RuleCheckResponseSerializer,
+        description="Check if an order passes specified validation rules",
+        summary="Validate Order Rules",
+    )
     def post(self, request):
         serializer = RuleCheckRequestSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        validated = getattr(serializer, "validated_data", None) or {}
+        validated: dict = getattr(serializer, "validated_data", {}) or {}
         order_id = validated.get("order_id")
+        rule_names = validated.get("rules", [])
+
         if order_id is None:
             return Response({"error": "order_id is required"}, status=status.HTTP_400_BAD_REQUEST)
-        rule_names = validated.get("rules") or []
-        if not isinstance(rule_names, (list, tuple)):
-            rule_names = [rule_names]
 
         try:
             order = Order.objects.get(id=order_id)
