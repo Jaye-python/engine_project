@@ -107,6 +107,22 @@ The project includes 3 sample orders:
 - Order 2: $75.50, 1 item
 - Order 3: $200.00, 5 items
 
+### Viewing Records via Django Admin
+
+1. Create superuser:
+```bash
+python manage.py createsuperuser
+```
+
+2. Access admin portal:
+Visit http://localhost:8000/admin/ and login to view/manage orders
+
+**Admin Features:**
+- **View**: Browse all orders in a table format
+- **Create**: Click "Add Order" to create new orders
+- **Update**: Edit orders inline or click individual records
+- **Delete**: Select orders and use bulk delete action
+
 ## API Documentation
 
 Interactive API documentation is available at:
