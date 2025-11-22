@@ -11,7 +11,11 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-&#h&4=-@ik!-ly!8$3bg4le^mm
 
 DEBUG = os.getenv("DEBUG", "True").lower() == "true"
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
+ALLOWED_HOSTS = (
+    ["localhost", "127.0.0.1", "testserver"] + os.getenv("ALLOWED_HOSTS", "").split(",")
+    if os.getenv("ALLOWED_HOSTS")
+    else ["localhost", "127.0.0.1", "testserver"]
+)
 
 
 INSTALLED_APPS = [
@@ -21,6 +25,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "order",
 ]
 
 MIDDLEWARE = [
